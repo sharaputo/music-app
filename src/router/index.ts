@@ -1,8 +1,46 @@
 import { createRouter, createWebHistory } from "vue-router";
+import useUserStore from "@/stores/user";
+import type { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
+import Home from "@/views/Home.vue";
+
+const routes = [
+  {
+    name: "home",
+    path: "/",
+    component: Home,
+  },
+  {
+    name: "manage",
+    path: "/manage-music",
+    meta: { needsAuth: true },
+    component: () => import("@/views/Manage.vue"),
+    beforeEnter: (
+      to: RouteLocationNormalized,
+      from: RouteLocationNormalized,
+      next: NavigationGuardNext
+    ): void => {
+      const userStore = useUserStore();
+      if (userStore.userLoggedIn) {
+        next();
+        return;
+      }
+      next({ name: "home" });
+    },
+  },
+  {
+    path: "/manage",
+    redirect: { name: "manage" },
+  },
+  {
+    path: "/:catchAll(.*)*",
+    redirect: { name: "home" },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [],
+  linkActiveClass: "text-yellow-500",
+  routes,
 });
 
 export default router;
