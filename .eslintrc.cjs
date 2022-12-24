@@ -14,6 +14,12 @@ module.exports = {
       files: ["cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}"],
       extends: ["plugin:cypress/recommended"],
     },
+    {
+      files: ["src/views/**/*.vue"],
+      rules: {
+        "vue/multi-word-component-names": 0,
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: "latest",
