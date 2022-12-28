@@ -37,7 +37,7 @@ import { onBeforeRouteLeave } from "vue-router";
 import UploadForm from "@/components/UploadForm.vue";
 import TrackItem from "@/components/TrackItem.vue";
 import { auth, tracksCollection } from "@/includes/firebase";
-import type TrackDetails from "@/types/TrackDetails";
+import type { TrackDetails } from "@/types/TrackDetails";
 
 const tracks = ref<TrackDetails[]>([]);
 const unsavedFlag = ref(false);

@@ -1,0 +1,32 @@
+<template>
+  <li
+    class="flex justify-between items-center p-3 pl-6 cursor-pointer transition duration-300 hover:bg-gray-50"
+  >
+    <div>
+      <RouterLink
+        :to="{ name: 'track', params: { id: track.docId } }"
+        class="font-bold block text-gray-600"
+      >
+        {{ track.modified_name }}
+      </RouterLink>
+      <p class="text-gray-500 text-sm first-letter:uppercase">
+        {{ track.display_name }}
+      </p>
+    </div>
+
+    <div class="text-gray-600 text-lg">
+      <span class="comments">
+        <i class="fa fa-comments text-gray-600"></i>
+        {{ track.comment_count }}
+      </span>
+    </div>
+  </li>
+</template>
+
+<script setup lang="ts">
+import type { TrackDetails } from "@/types/TrackDetails";
+
+defineProps<{
+  track: TrackDetails;
+}>();
+</script>

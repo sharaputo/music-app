@@ -58,7 +58,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useUserStore from "@/stores/user";
-import type UserLogin from "@/types/UserLogin";
+import type { UserLogin } from "@/types/UserLogin";
 
 const loginSchema = ref({
   email: "required|min:6|max:100|email",
@@ -87,6 +87,7 @@ const login = async (values: UserLogin): Promise<void> => {
     return;
   }
 
+  login_in_submission.value = false;
   login_alert_variant.value = "bg-green-500";
   login_alert_message.value = "Success! You are now logged in.";
 

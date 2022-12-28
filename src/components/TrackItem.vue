@@ -108,6 +108,7 @@ const editDetails = async (data: TrackDetails): Promise<void> => {
   try {
     await tracksCollection.doc(props.track.docId).update(data);
   } catch (error) {
+    in_submission.value = false;
     alert_variant.value = "bg-red-500";
     alert_message.value = "Error updating track info. Please, try again.";
     return;

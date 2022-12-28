@@ -1,4 +1,4 @@
-export default interface TrackDetails {
+export interface TrackDetails {
   comment_count: number;
   display_name: string;
   docId: string;

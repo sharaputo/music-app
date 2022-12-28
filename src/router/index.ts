@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import useUserStore from "@/stores/user";
 import type { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
 import Home from "@/views/Home.vue";
+import Track from "@/views/Track.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
   {
     path: "/manage",
     redirect: { name: "manage" },
+  },
+  {
+    name: "track",
+    path: "/track/:id",
+    component: Track,
   },
   {
     path: "/:catchAll(.*)*",

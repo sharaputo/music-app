@@ -142,7 +142,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useUserStore from "@/stores/user";
-import type UserRegister from "@/types/UserRegister";
+import type { UserRegister } from "@/types/UserRegister";
 
 const schema = ref({
   name: "required|min:3|max:50|alpha_spaces",
@@ -180,6 +180,7 @@ const register = async (values: UserRegister): Promise<void> => {
     return;
   }
 
+  reg_in_submission.value = false;
   reg_alert_variant.value = "bg-green-500";
   reg_alert_message.value = "Success! Your account has been created.";
 

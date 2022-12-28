@@ -1,4 +1,4 @@
-export default interface UserDetails {
+export interface UserRegister {
   age: string;
   confirm_password: string;
   country: string;
