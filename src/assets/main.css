@@ -20,10 +20,6 @@ a:hover {
   width: calc(100% - 250px);
 }
 
-.top-neg-8 {
-  top: -8px;
-}
-
 .player-song-info {
   margin-top: -24px;
 }

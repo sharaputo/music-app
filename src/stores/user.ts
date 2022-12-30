@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { auth, usersCollection } from "@/includes/firebase";
-import type UserRegister from "@/types/UserRegister";
-import type UserLogin from "@/types/UserLogin";
+import type { UserRegister } from "@/types/UserRegister";
+import type { UserLogin } from "@/types/UserLogin";
 
 export default defineStore("user", () => {
   const userLoggedIn = ref(false);

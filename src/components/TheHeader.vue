@@ -15,7 +15,7 @@
             <a
               class="px-2 text-white"
               href="#"
-              @click.prevent="toggleAuthModal"
+              @click.prevent="modalStore.toggleOpen"
             >
               Login / Register
             </a>
@@ -44,9 +44,6 @@ import useModalStore from "@/stores/authModal";
 import useUserStore from "@/stores/user";
 
 const modalStore = useModalStore();
-const toggleAuthModal = (): void => {
-  modalStore.toggleOpen();
-};
 
 const userStore = useUserStore();
 const router = useRouter();

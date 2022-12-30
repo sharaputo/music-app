@@ -77,7 +77,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { storage, tracksCollection } from "@/includes/firebase";
-import type TrackDetails from "@/types/TrackDetails";
+import type { TrackDetails } from "@/types/TrackDetails";
 
 const props = defineProps<{
   track: TrackDetails;

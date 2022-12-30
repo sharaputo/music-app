@@ -4,7 +4,10 @@
       class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
     >
       <!-- Backdrop -->
-      <div class="fixed inset-0 transition-opacity" @click="toggleAuthModal">
+      <div
+        class="fixed inset-0 transition-opacity"
+        @click="modalStore.toggleOpen"
+      >
         <div class="absolute inset-0 bg-gray-800 opacity-75"></div>
       </div>
 
@@ -22,7 +25,7 @@
             <button
               type="button"
               class="modal-close cursor-pointer z-50"
-              @click="toggleAuthModal"
+              @click="modalStore.toggleOpen"
             >
               <i class="fas fa-times"></i>
             </button>
@@ -65,9 +68,6 @@ import RegisterForm from "@/components/RegisterForm.vue";
 import useModalStore from "@/stores/authModal";
 
 const modalStore = useModalStore();
-const toggleAuthModal = (): void => {
-  modalStore.toggleOpen();
-};
 
 const activeTab = ref("login");
 const loginClasses = computed(() => {

@@ -15,10 +15,16 @@
     </div>
 
     <div class="text-gray-600 text-lg">
-      <span class="comments">
-        <i class="fa fa-comments text-gray-600"></i>
-        {{ track.comment_count }}
-      </span>
+      <RouterLink
+        :to="{ name: 'track', params: { id: track.docId }, hash: '#comments' }"
+        custom
+        v-slot="{ navigate }"
+      >
+        <span class="comments" @click="navigate">
+          <i class="fa fa-comments text-gray-600"></i>
+          {{ track.comment_count }}
+        </span>
+      </RouterLink>
     </div>
   </li>
 </template>

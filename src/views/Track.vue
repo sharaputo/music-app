@@ -9,8 +9,9 @@
       <button
         type="button"
         class="z-50 h-24 w-24 text-3xl bg-white text-black rounded-full focus:outline-none"
+        @click.prevent="playerStore.newTrack(track as TrackDetails)"
       >
-        <i class="fas fa-play"></i>
+        <i class="fas" :class="isPlaying"></i>
       </button>
       <div class="z-50 text-left ml-8">
         <div class="text-3xl font-bold">{{ track?.modified_name }}</div>
@@ -20,7 +21,7 @@
   </section>
 
   <!-- Main Content -->
-  <section class="container mx-auto mt-6">
+  <section class="container mx-auto mt-6" id="comments">
     <div class="bg-white rounded border border-gray-200 relative flex flex-col">
       <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
         <span class="card-title">Comments ({{ track?.comment_count }})</span>
@@ -92,6 +93,7 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import useUserStore from "@/stores/user";
+import usePlayerStore from "@/stores/player";
 import {
   auth,
   tracksCollection,
@@ -109,13 +111,18 @@ interface Comment {
 }
 
 const userStore = useUserStore();
+const playerStore = usePlayerStore();
 const router = useRouter();
 const route = useRoute();
 
-const track = ref<TrackDetails>();
+const track = ref<TrackDetails | null>(null);
 const comments = ref<Comment[]>([]);
 const schema = ref({
   comment: "required|min:3",
+});
+
+const isPlaying = computed(() => {
+  return playerStore.isPlaying ? "fa-pause" : "fa-play";
 });
 
 const sort = ref("1");
