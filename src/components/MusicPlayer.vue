@@ -1,5 +1,4 @@
 <template>
-  <!-- Player -->
   <div
     class="fixed bottom-0 left-0 bg-white p-5 pb-4 text-left align-top w-full h-16"
   >
@@ -37,8 +36,8 @@
           <span
             class="absolute -top-2.5 text-gray-800 text-lg"
             :style="{ left: playerStore.progress }"
+            v-icon:full="'fas fa-circle'"
           >
-            <i class="fas fa-circle"></i>
           </span>
           <span
             class="block h-2 rounded bg-gradient-to-r from-green-500 to-green-400"

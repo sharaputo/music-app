@@ -28,7 +28,7 @@
       >
         <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
           <span class="card-title">Comments ({{ track?.comment_count }})</span>
-          <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
+          <div v-icon.right.green="'comments'"></div>
         </div>
         <div class="p-6">
           <div

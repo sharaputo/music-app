@@ -21,8 +21,8 @@
         v-slot="{ navigate }"
       >
         <span class="comments" @click="navigate">
-          <i class="fa fa-comments text-gray-600"></i>
           {{ track.comment_count }}
+          <span v-icon:full="'fa fa-comments text-gray-600'"></span>
         </span>
       </RouterLink>
     </div>

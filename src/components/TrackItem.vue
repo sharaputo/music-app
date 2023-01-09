@@ -6,16 +6,14 @@
         type="button"
         class="ml-1 py-1 px-2 text-sm rounded text-white bg-red-600 float-right"
         @click.prevent="deleteTrack"
-      >
-        <i class="fa fa-times"></i>
-      </button>
+        v-icon:full="'fa fa-times'"
+      ></button>
       <button
         type="button"
         class="ml-1 py-1 px-2 text-sm rounded text-white bg-blue-600 float-right"
         @click.prevent="formShown = !formShown"
-      >
-        <i class="fa fa-pencil-alt"></i>
-      </button>
+        v-icon:full="'fa fa-pencil-alt'"
+      ></button>
     </div>
     <div v-show="formShown">
       <div
