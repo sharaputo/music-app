@@ -1,9 +1,11 @@
 <template>
   <TheHeader />
 
-  <main>
-    <RouterView />
-  </main>
+  <RouterView #="{ Component }">
+    <Transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
 
   <MusicPlayer />
 
@@ -26,3 +28,16 @@ onMounted(() => {
   }
 });
 </script>
+
+<style>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: opacity 0.5s linear;
+}
+.fade-leave-to {
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+</style>
