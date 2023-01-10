@@ -1,14 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useUserStore from "@/stores/user";
 import type { RouteLocationNormalized, NavigationGuardNext } from "vue-router";
-import Home from "@/views/Home.vue";
-import Track from "@/views/Track.vue";
 
 const routes = [
   {
     name: "home",
     path: "/",
-    component: Home,
+    component: () => import("@/views/Home.vue"),
   },
   {
     name: "manage",
@@ -35,7 +33,7 @@ const routes = [
   {
     name: "track",
     path: "/track/:id",
-    component: Track,
+    component: () => import("@/views/Track.vue"),
   },
   {
     path: "/:catchAll(.*)*",
