@@ -72,6 +72,18 @@ const upload = ($event: any): void => {
   files.forEach((file) => {
     if (file.type !== "audio/mpeg") return;
 
+    if (!navigator.onLine) {
+      uploads.value.push({
+        task: {},
+        current_progress: 100,
+        name: file.name,
+        variant: "bg-red-400",
+        icon: "fas fa-times",
+        text_class: "text-red-400",
+      });
+      return;
+    }
+
     const storageRef = storage.ref();
     const tracksRef = storageRef.child(`tracks/${file.name}`);
     const task = tracksRef.put(file);
