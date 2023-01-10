@@ -21,14 +21,13 @@
         <div class="py-4 text-left px-6">
           <!-- Modal header + close button -->
           <div class="flex justify-between items-center pb-4">
-            <p class="text-2xl font-bold">Your Account</p>
+            <p class="text-2xl font-bold">{{ $t("authmodal.title") }}</p>
             <button
               type="button"
               class="modal-close cursor-pointer z-50"
               @click="modalStore.toggleOpen"
-            >
-              <i class="fas fa-times"></i>
-            </button>
+              v-icon:full="'fas fa-times'"
+            ></button>
           </div>
 
           <!-- Tabs to switch login/register -->
@@ -39,7 +38,7 @@
                 href="#"
                 @click.prevent="activeTab = 'login'"
               >
-                Login
+                {{ $t("authmodal.login") }}
               </a>
             </li>
             <li class="flex-auto text-center">
@@ -48,7 +47,7 @@
                 href="#"
                 @click.prevent="activeTab = 'register'"
               >
-                Register
+                {{ $t("authmodal.register") }}
               </a>
             </li>
           </ul>

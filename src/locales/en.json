@@ -1,0 +1,77 @@
+{
+  "header": {
+    "login": "Login / Register",
+    "manage": "Manage",
+    "logout": "Logout"
+  },
+  "authmodal": {
+    "title": "Your Account",
+    "login": "Login",
+    "register": "Register"
+  },
+  "register": {
+    "name": "Name",
+    "name_placeholder": "Enter your name",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "age": "Age",
+    "password": "Password",
+    "password_placeholder": "Set a password",
+    "password_confirm": "Confirm Password",
+    "password_confirm_placeholder": "Confirm your password",
+    "country": "Country",
+    "country_usa": "USA",
+    "country_china": "China",
+    "country_india": "India",
+    "country_russia": "Russia",
+    "country_mexico": "Mexico",
+    "country_germany": "Germany",
+    "country_nkorea": "North Korea",
+    "country_iran": "Iran",
+    "accept": "I accept Musiq Oasis's {0}",
+    "tos": "Terms of Service",
+    "register": "Register",
+    "message_general": "Please, wait! Your account is being created.",
+    "message_success": "Success! Your account has been created.",
+    "message_error": "An unexpected error occured! Please, try again later."
+  },
+  "login": {
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "password": "Password",
+    "password_placeholder": "Enter your password",
+    "login": "Login",
+    "message_general": "Please, wait! We are logging you in.",
+    "message_success": "You are logged in successfully!",
+    "message_error": "Invalid login details."
+  },
+  "home": {
+    "title": "Connect with friends and share your music journey!",
+    "description": "You can create a playlist for your favourite electronic music. You can also share your playlist with your friends and listen to their playlists.",
+    "subtitle": "Tracks"
+  },
+  "manage": {
+    "upload": "Uploads",
+    "tracks": "My Tracks",
+    "input": "Drop your files here",
+    "track_title": "Track Title",
+    "track_title_placeholder": "Enter track title",
+    "track_genre": "Genre",
+    "track_genre_placeholder": "Enter track genre",
+    "update": "Save",
+    "cancel": "Cancel",
+    "message_general": "Please, wait! Updating track info.",
+    "message_success": "Track info updated successfully!",
+    "message_error": "Error updating track info. Please, try again."
+  },
+  "track": {
+    "comment_count": "Сomments",
+    "comment_placeholder": "Write a comment...",
+    "submit": "Submit",
+    "latest": "Latest",
+    "oldest": "Oldest",
+    "message_general": "Please, wait! Your comment is being submitted.",
+    "message_success": "Comment added.",
+    "message_error": "Error adding comment. Please try again."
+  }
+}

@@ -27,8 +27,10 @@
         class="bg-white rounded border border-gray-200 relative flex flex-col"
       >
         <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
-          <span class="card-title">Comments ({{ track?.comment_count }})</span>
-          <div v-icon.right.green="'comments'"></div>
+          <span class="card-title">
+            {{ $t("track.comment_count") }} ({{ track?.comment_count }})
+          </span>
+          <span v-icon.right.green="'comments'"></span>
         </div>
         <div class="p-6">
           <div
@@ -47,9 +49,9 @@
               as="textarea"
               name="comment"
               class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded mb-4"
-              placeholder="Your comment here..."
+              :placeholder="$t('track.comment_placeholder')"
             ></vee-field>
-            <div>
+            <div class="mb-4">
               <ErrorMessage class="text-red-600" name="comment" />
             </div>
             <button
@@ -57,7 +59,7 @@
               class="py-1.5 px-3 rounded text-white bg-green-600"
               :disabled="comment_in_submission"
             >
-              Submit
+              {{ $t("track.submit") }}
             </button>
           </vee-form>
           <!-- Comments sorting -->
@@ -65,8 +67,8 @@
             class="block mt-4 py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
             v-model="sort"
           >
-            <option value="1">Latest</option>
-            <option value="2">Oldest</option>
+            <option value="1">{{ $t("track.latest") }}</option>
+            <option value="2">{{ $t("track.oldest") }}</option>
           </select>
         </div>
       </div>
@@ -98,6 +100,7 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import useUserStore from "@/stores/user";
 import usePlayerStore from "@/stores/player";
+import { useI18n } from "vue-i18n";
 import {
   auth,
   tracksCollection,
@@ -118,11 +121,12 @@ const userStore = useUserStore();
 const playerStore = usePlayerStore();
 const router = useRouter();
 const route = useRoute();
+const { t } = useI18n();
 
 const track = ref<TrackDetails | null>(null);
 const comments = ref<Comment[]>([]);
 const schema = ref({
-  comment: "required|min:3",
+  comment: "min:3",
 });
 
 const isPlaying = computed(() => {
@@ -150,9 +154,7 @@ watch(sort, (newVal) => {
 const comment_in_submission = ref(false);
 const comment_show_alert = ref(false);
 const comment_alert_variant = ref("bg-blue-500");
-const comment_alert_message = ref(
-  "Please, wait! Your comment is being submitted."
-);
+const comment_alert_message = ref(t("track.message_general"));
 const addComment = async (
   value: any,
   { resetForm }: { resetForm: () => void }
@@ -160,8 +162,7 @@ const addComment = async (
   comment_in_submission.value = true;
   comment_show_alert.value = true;
   comment_alert_variant.value = "bg-blue-500";
-  comment_alert_message.value =
-    "Please, wait! Your comment is being submitted.";
+  comment_alert_message.value = t("track.message_general");
 
   const comment: Comment = {
     content: value.comment,
@@ -184,7 +185,7 @@ const addComment = async (
   } catch (error) {
     comment_in_submission.value = false;
     comment_alert_variant.value = "bg-red-500";
-    comment_alert_message.value = "Error adding comment. Please try again.";
+    comment_alert_message.value = t("track.message_error");
     return;
   }
 
@@ -192,7 +193,7 @@ const addComment = async (
 
   comment_in_submission.value = false;
   comment_alert_variant.value = "bg-green-500";
-  comment_alert_message.value = "Comment added.";
+  comment_alert_message.value = t("track.message_success");
   resetForm();
 };
 const getComments = async (): Promise<void> => {

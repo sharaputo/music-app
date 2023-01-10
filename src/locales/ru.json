@@ -1,0 +1,77 @@
+{
+  "header": {
+    "login": "Войти / Зарегестрироваться",
+    "manage": "Управление музыкой",
+    "logout": "Выйти"
+  },
+  "authmodal": {
+    "title": "Ваш аккаунт",
+    "login": "Войти",
+    "register": "Зарегестрироваться"
+  },
+  "register": {
+    "name": "Имя",
+    "name_placeholder": "Введите ваше имя",
+    "email": "Email",
+    "email_placeholder": "Введите ваш email",
+    "age": "Возраст",
+    "password": "Пароль",
+    "password_placeholder": "Установите пароль",
+    "password_confirm": "Подтверждение пароля",
+    "password_confirm_placeholder": "Подтвердите свой пароль",
+    "country": "Страна",
+    "country_usa": "США",
+    "country_china": "Китай",
+    "country_india": "Индия",
+    "country_russia": "Россия",
+    "country_mexico": "Мексика",
+    "country_germany": "Германич",
+    "country_nkorea": "Северная Корея",
+    "country_iran": "Иран",
+    "accept": "Я принимаю {0}",
+    "tos": "Условия использования",
+    "register": "Зарегестрироваться",
+    "message_general": "Пожалуйста, подождите! Ваш аккаунт создаётся.",
+    "message_success": "Отлично! Аккаунт создан.",
+    "message_error": "Произошла ошибка! Пожалуйста, попробуйте снова позже."
+  },
+  "login": {
+    "email": "Email",
+    "email_placeholder": "Введите ваш email",
+    "password": "Пароль",
+    "password_placeholder": "Введите ваш пароль",
+    "login": "Войти",
+    "message_general": "Пожалуйста, подождите! Происходит вход в аккаунт.",
+    "message_success": "Вы успешно вошли в свой аккаунт!",
+    "message_error": "Неверные данные для входа."
+  },
+  "home": {
+    "title": "Общайтесь с друзьями и делитесь своим музыкальным путешествием!",
+    "description": "Вы можете создать плейлист для своей любимой электронной музыки. Вы также можете поделиться своим плейлистом с друзьями и слушать их плейлисты.",
+    "subtitle": "Треки"
+  },
+  "manage": {
+    "upload": "Загрузки",
+    "tracks": "Мои Треки",
+    "input": "Перетащите файлы сюда",
+    "track_title": "Название Трека",
+    "track_title_placeholder": "Введите название трека",
+    "track_genre": "Жанр",
+    "track_genre_placeholder": "Введите название жанра",
+    "update": "Сохранить",
+    "cancel": "Отменить",
+    "message_general": "Пожалуйста, подождите! информация обновляется.",
+    "message_success": "Информация успешно обновлена!",
+    "message_error": "Произошла ошибка! Пожалуйста, попробуйте снова позже."
+  },
+  "track": {
+    "comment_count": "Комментарии",
+    "comment_placeholder": "Оставьте комментарий...",
+    "submit": "Отправить",
+    "latest": "Последние",
+    "oldest": "Первые",
+    "message_general": "Пожалуйста, подождите! Ваш комментарий отправляется.",
+    "message_success": "Комментарий добавлен.",
+    "message_error": "Произошла ошибка! Пожалуйста, попробуйте снова позже."
+  }
+}

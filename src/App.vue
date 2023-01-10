@@ -34,10 +34,10 @@ onMounted(() => {
   opacity: 0;
 }
 .fade-enter-active {
-  transition: opacity 0.5s linear;
+  transition: opacity 0.3s linear;
 }
 .fade-leave-to {
   opacity: 0;
-  transition: opacity 0.5s linear;
+  transition: opacity 0.3s linear;
 }
 </style>

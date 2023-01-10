@@ -12,28 +12,28 @@
     <!-- Email -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="login_email">
-        Email
+        {{ $t("login.email") }}
       </label>
       <vee-field
         name="email"
         type="email"
         id="login_email"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Enter Email"
+        :placeholder="$t('login.email_placeholder')"
       />
       <ErrorMessage class="text-red-600" name="email" />
     </div>
     <!-- Password -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="login_password">
-        Password
+        {{ $t("login.password") }}
       </label>
       <vee-field name="password" :bails="false" v-slot="{ field, errors }">
         <input
           type="password"
           id="login_password"
           class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-          placeholder="Password"
+          :placeholder="$t('login.password_placeholder')"
           v-bind="field"
         />
         <div
@@ -50,7 +50,7 @@
       class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
       :disabled="login_in_submission"
     >
-      Submit
+      {{ $t("login.login") }}
     </button>
   </vee-form>
 </template>
@@ -58,6 +58,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useUserStore from "@/stores/user";
+import { useI18n } from "vue-i18n";
 import type { UserLogin } from "@/types/UserLogin";
 
 const loginSchema = ref({
@@ -66,30 +67,31 @@ const loginSchema = ref({
 });
 
 const userStore = useUserStore();
+const { t } = useI18n();
 
 const login_in_submission = ref(false);
 const login_show_alert = ref(false);
 const login_alert_variant = ref("bg-blue-500");
-const login_alert_message = ref("Please, wait! Your account is being created.");
+const login_alert_message = ref(t("login.message_general"));
 
 const login = async (values: UserLogin): Promise<void> => {
   login_in_submission.value = true;
   login_show_alert.value = true;
   login_alert_variant.value = "bg-blue-500";
-  login_alert_message.value = "Please, wait! We are logging you in.";
+  login_alert_message.value = t("login.message_general");
 
   try {
     await userStore.authenticate(values);
   } catch (error) {
     login_in_submission.value = false;
     login_alert_variant.value = "bg-red-500";
-    login_alert_message.value = "Invalid login details.";
+    login_alert_message.value = t("login.message_error");
     return;
   }
 
   login_in_submission.value = false;
   login_alert_variant.value = "bg-green-500";
-  login_alert_message.value = "Success! You are now logged in.";
+  login_alert_message.value = t("login.message_success");
 
   window.location.reload();
 };

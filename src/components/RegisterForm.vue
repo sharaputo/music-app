@@ -16,35 +16,35 @@
     <!-- Name -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="register_name">
-        Name
+        {{ $t("register.name") }}
       </label>
       <vee-field
         name="name"
         type="text"
         id="register_name"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Enter Name"
+        :placeholder="$t('register.name_placeholder')"
       />
       <ErrorMessage class="text-red-600" name="name" />
     </div>
     <!-- Email -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="register_email">
-        Email
+        {{ $t("register.email") }}
       </label>
       <vee-field
         name="email"
         type="email"
         id="register_email"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Enter Email"
+        :placeholder="$t('register.email_placeholder')"
       />
       <ErrorMessage class="text-red-600" name="email" />
     </div>
     <!-- Age -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="register_age">
-        Age
+        {{ $t("register.age") }}
       </label>
       <vee-field
         name="age"
@@ -57,14 +57,14 @@
     <!-- Password -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="register_password">
-        Password
+        {{ $t("register.password") }}
       </label>
       <vee-field name="password" :bails="false" v-slot="{ field, errors }">
         <input
           type="password"
           id="register_password"
           class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-          placeholder="Password"
+          :placeholder="$t('register.password_placeholder')"
           v-bind="field"
         />
         <div
@@ -82,21 +82,21 @@
         class="inline-block mb-2 cursor-pointer"
         for="register_password_confirm"
       >
-        Confirm Password
+        {{ $t("register.password_confirm") }}
       </label>
       <vee-field
         name="confirm_password"
         type="password"
         id="register_password_confirm"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-        placeholder="Confirm Password"
+        :placeholder="$t('register.password_confirm_placeholder')"
       />
       <ErrorMessage class="text-red-600" name="confirm_password" />
     </div>
     <!-- Country -->
     <div class="mb-3">
       <label class="inline-block mb-2 cursor-pointer" for="register_country">
-        Country
+        {{ $t("register.country") }}
       </label>
       <vee-field
         as="select"
@@ -104,14 +104,14 @@
         id="register_country"
         class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
       >
-        <option value="USA">USA</option>
-        <option value="China">China</option>
-        <option value="India">India</option>
-        <option value="Russia">Russia</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Germany">Germany</option>
-        <option value="NorthKorea">North Korea</option>
-        <option value="Iran">Iran</option>
+        <option value="USA">{{ $t("register.country_usa") }}</option>
+        <option value="China">{{ $t("register.country_china") }}</option>
+        <option value="India">{{ $t("register.country_india") }}</option>
+        <option value="Russia">{{ $t("register.country_russia") }}</option>
+        <option value="Mexico">{{ $t("register.country_mexico") }}</option>
+        <option value="Germany">{{ $t("register.country_germany") }}</option>
+        <option value="NorthKorea">{{ $t("register.country_nkorea") }}</option>
+        <option value="Iran">{{ $t("register.country_iran") }}</option>
       </vee-field>
       <ErrorMessage class="text-red-600" name="country" />
     </div>
@@ -124,9 +124,14 @@
         value="1"
         class="w-4 h-4 float-left -ml-6 mt-1 rounded"
       />
-      <label class="inline-block cursor-pointer" for="register_checkbox">
-        Accept terms of service
-      </label>
+      <i18n-t
+        tag="label"
+        for="register_checkbox"
+        class="inline-block cursor-pointer"
+        keypath="register.accept"
+      >
+        <a href="#!">{{ $t("register.tos") }}</a>
+      </i18n-t>
       <ErrorMessage class="text-red-600 block" name="tos" />
     </div>
     <button
@@ -134,7 +139,7 @@
       class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
       :disabled="reg_in_submission"
     >
-      Submit
+      {{ $t("register.register") }}
     </button>
   </vee-form>
 </template>
@@ -142,6 +147,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import useUserStore from "@/stores/user";
+import { useI18n } from "vue-i18n";
 import type { UserRegister } from "@/types/UserRegister";
 
 const schema = ref({
@@ -158,31 +164,31 @@ const userData = ref({
 });
 
 const userStore = useUserStore();
+const { t } = useI18n();
 
 const reg_in_submission = ref(false);
 const reg_show_alert = ref(false);
 const reg_alert_variant = ref("bg-blue-500");
-const reg_alert_message = ref("Please, wait! Your account is being created.");
+const reg_alert_message = ref(t("register.message_general"));
 
 const register = async (values: UserRegister): Promise<void> => {
   reg_in_submission.value = true;
   reg_show_alert.value = true;
   reg_alert_variant.value = "bg-blue-500";
-  reg_alert_message.value = "Please, wait! Your account is being created.";
+  reg_alert_message.value = t("register.message_general");
 
   try {
     await userStore.registerUser(values);
   } catch (error) {
     reg_in_submission.value = false;
     reg_alert_variant.value = "bg-red-500";
-    reg_alert_message.value =
-      "An unexpected error occured! Please, try again later";
+    reg_alert_message.value = t("register.message_error");
     return;
   }
 
   reg_in_submission.value = false;
   reg_alert_variant.value = "bg-green-500";
-  reg_alert_message.value = "Success! Your account has been created.";
+  reg_alert_message.value = t("register.message_success");
 
   window.location.reload();
 };

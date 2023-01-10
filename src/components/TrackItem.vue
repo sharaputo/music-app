@@ -29,25 +29,29 @@
         @submit="editDetails"
       >
         <div class="mb-3">
-          <label class="inline-block mb-2" for="track_title">Track Title</label>
+          <label class="inline-block mb-2" for="track_title">
+            {{ $t("manage.track_title") }}
+          </label>
           <vee-field
             name="modified_name"
             type="text"
             id="track_title"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-            placeholder="Enter Song Title"
+            :placeholder="$t('manage.track_title_placeholder')"
             @input="updateUnsavedFlag(true)"
           />
           <ErrorMessage class="text-red-600" name="modified_name" />
         </div>
         <div class="mb-3">
-          <label class="inline-block mb-2" for="track_genre">Genre</label>
+          <label class="inline-block mb-2" for="track_genre">
+            {{ $t("manage.track_genre") }}
+          </label>
           <vee-field
             name="genre"
             type="text"
             id="track_genre"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-            placeholder="Enter Genre"
+            :placeholder="$t('manage.track_genre_placeholder')"
             @input="updateUnsavedFlag(true)"
           />
           <ErrorMessage class="text-red-600" name="genre" />
@@ -57,7 +61,7 @@
           class="py-1.5 px-3 rounded text-white bg-green-600"
           :disabled="in_submission"
         >
-          Submit
+          {{ $t("manage.update") }}
         </button>
         <button
           type="button"
@@ -65,7 +69,7 @@
           :disabled="in_submission"
           @click.prevent="formShown = !formShown"
         >
-          Go Back
+          {{ $t("manage.cancel") }}
         </button>
       </vee-form>
     </div>
@@ -75,6 +79,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { storage, tracksCollection } from "@/includes/firebase";
+import { useI18n } from "vue-i18n";
 import type { TrackDetails } from "@/types/TrackDetails";
 
 const props = defineProps<{
@@ -92,23 +97,24 @@ const trackSchema = ref({
   genre: "alpha_spaces",
 });
 
+const { t } = useI18n();
 const in_submission = ref(false);
 const show_alert = ref(false);
 const alert_variant = ref("bg-blue-500");
-const alert_message = ref("Please, wait! Updating track info.");
+const alert_message = ref(t("manage.message_general"));
 
 const editDetails = async (data: TrackDetails): Promise<void> => {
   in_submission.value = true;
   show_alert.value = true;
   alert_variant.value = "bg-blue-500";
-  alert_message.value = "Please, wait! Updating track info.";
+  alert_message.value = t("manage.message_general");
 
   try {
     await tracksCollection.doc(props.track.docId).update(data);
   } catch (error) {
     in_submission.value = false;
     alert_variant.value = "bg-red-500";
-    alert_message.value = "Error updating track info. Please, try again.";
+    alert_message.value = t("manage.message_error");
     return;
   }
 
@@ -117,7 +123,7 @@ const editDetails = async (data: TrackDetails): Promise<void> => {
 
   in_submission.value = false;
   alert_variant.value = "bg-green-500";
-  alert_message.value = "Track info updated successfully!";
+  alert_message.value = t("manage.message_success");
 };
 const deleteTrack = async (): Promise<void> => {
   const storageRef = storage.ref();

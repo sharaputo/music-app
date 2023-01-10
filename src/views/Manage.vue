@@ -13,7 +13,7 @@
               class="px-6 pt-6 pb-5 font-bold border-b border-gray-200"
               v-icon.right.green="'compact-disc'"
             >
-              <span class="card-title">My Tracks</span>
+              <span class="card-title">{{ $t("manage.tracks") }}</span>
             </div>
             <div class="p-6">
               <TrackItem
