@@ -20,6 +20,17 @@ module.exports = {
         "vue/multi-word-component-names": 0,
       },
     },
+    {
+      files: ["src/components/__tests__/**.spec.js"],
+      globals: {
+        test: "readonly",
+        describe: "readonly",
+        expect: "readonly",
+        vi: "readonly",
+        beforeEach: "readonly",
+        it: "readonly",
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: "latest",
