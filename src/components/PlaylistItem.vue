@@ -5,7 +5,7 @@
     <div>
       <RouterLink
         :to="{ name: 'track', params: { id: track.docId } }"
-        class="font-bold block text-gray-600"
+        class="font-bold block text-gray-600 track"
       >
         {{ track.modified_name }}
       </RouterLink>

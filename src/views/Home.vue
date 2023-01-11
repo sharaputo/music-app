@@ -53,7 +53,7 @@ const tracks = ref<TrackDetails[]>([]);
 const pendingRequest = ref(false);
 const maxPerPage = 25;
 
-const getTracks = async () => {
+const getTracks = async (): Promise<void> => {
   if (pendingRequest.value) {
     return;
   }

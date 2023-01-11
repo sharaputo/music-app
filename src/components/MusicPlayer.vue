@@ -5,7 +5,11 @@
     <div class="relative">
       <!-- Play/Pause Button -->
       <div class="float-left w-7 h-7 leading-3">
-        <button type="button" @click.prevent="playerStore.toggleAudio">
+        <button
+          type="button"
+          id="player-play"
+          @click.prevent="playerStore.toggleAudio"
+        >
           <i class="fa text-gray-500 text-xl" :class="isPlaying"></i>
         </button>
       </div>
